@@ -29,7 +29,13 @@
         runs-on: ubuntu-latest
 
         steps:
-        - uses: d33pster/automated-pytest@v1.1
+        - uses: d33pster/automated-pytest@v2
+          with:
+            Library: # current project name or lib name
+            # default will be "." which mean current path will
+            # be installed with pip to ensure tests run fine.
+            
+            GHT: # optional GitHub PAT
   ```
 
   After creating this file, and pushing the changes to the repository, on each push starting from this one, pytest will run.

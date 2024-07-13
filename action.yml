@@ -6,7 +6,7 @@ inputs:
   GHT:
     description: GitHub Personal Access Token with read and write permission
     required: False
-    default: $ {{ github.token }}
+    default: ${{ github.token }}
 
 runs:
   using: composite
@@ -25,7 +25,7 @@ runs:
         pip install -r $action/requirements.txt
       shell: bash
       env:
-        action: $ {{ github.action_path }}
+        action: ${{ github.action_path }}
     
     - name: test with pytest
       run: pytest

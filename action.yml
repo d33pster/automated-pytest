@@ -7,6 +7,10 @@ inputs:
     description: GitHub Personal Access Token with read and write permission
     required: False
     default: ${{ github.token }}
+  Library:
+    description: Library that we are testing
+    required: False
+    default: "."
 
 runs:
   using: composite
@@ -26,6 +30,12 @@ runs:
       shell: bash
       env:
         action: ${{ github.action_path }}
+    
+    - name: install current lib
+      run: pip install $lib
+      shell: bash
+      env:
+        lib: ${{ inputs.Library }}
     
     - name: test with pytest
       run: pytest

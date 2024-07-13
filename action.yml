@@ -1,0 +1,36 @@
+name: automated-pytest
+
+description: automated testing using pytest
+
+inputs:
+  GHT:
+    description: GitHub Personal Access Token with read and write permission
+    required: False
+    default: $ {{ github.token }}
+
+runs:
+  using: composite
+
+  steps:
+    - uses: actions/checkout@v3
+
+    - name: setup python3.12
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.12"
+
+    - name: install requirements
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r $action/requirements.txt
+      shell: bash
+      env:
+        action: $ {{ github.action_path }}
+    
+    - name: test with pytest
+      run: pytest
+      shell: bash
+
+branding:
+  icon: box
+  color: green

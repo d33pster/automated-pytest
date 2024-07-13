@@ -29,7 +29,7 @@
         runs-on: ubuntu-latest
 
         steps:
-        - uses: d33pster/automated-pytest@v1
+        - uses: d33pster/automated-pytest@v1.1
   ```
 
   After creating this file, and pushing the changes to the repository, on each push starting from this one, pytest will run.
